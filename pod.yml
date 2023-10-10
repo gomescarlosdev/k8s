@@ -6,11 +6,5 @@ metadata:
     app: goserver
 spec:
   containers:
-  - name: goserver
-    image: gomescarlosdev/go-hello
-    # resources:
-    #   limits:
-    #     memory: "128Mi"
-    #     cpu: "500m"
-    # ports:
-    #   - containerPort: 8080
+    - name: goserver
+      image: gomescarlosdev/hello-go:latest

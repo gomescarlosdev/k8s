@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: goserver
-  replicas: 2
+  replicas: 4
   template:
     metadata:
       labels:
@@ -16,61 +16,4 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "gomescarlosdev/go-hello:v5.3"
-
-          resources:
-            requests:
-              cpu: 100m
-              memory: 20Mi
-            limits:
-              cpu: 300m
-              memory: 60Mi
-
-          startupProbe:
-            httpGet:
-              path: /healthz
-              port: 8080
-            periodSeconds: 3
-            failureThreshold: 30
-            
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: 8080
-            periodSeconds: 1
-            failureThreshold: 1
-            #initialDelaySeconds: 10
-
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 8080
-            periodSeconds: 1
-            failureThreshold: 1
-            timeoutSeconds: 1
-            successThreshold: 1
-            #initialDelaySeconds: 30
-
-          envFrom:
-            - configMapRef:
-                name: goserver-env
-            - secretRef:
-                name: goserver-secret
-
-          volumeMounts:
-            - mountPath: "/go/files"
-              name: config
-            - mountPath: "/go/pvc"
-              name: goserver-volume
-
-      volumes:
-        - name: goserver-volume
-          persistentVolumeClaim:
-            claimName: goserver-pvc
-
-        - name: config
-          configMap:
-            name: configmap-app
-            items:
-              - key: members
-                path: "app.txt"
+          image: gomescarlosdev/hello-go:latest
