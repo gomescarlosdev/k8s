@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: configmap-app
 data:
-  members: "Enir Cristina, Edna Gonçalves, Valdomiro Mendes"
+  members: "Cristina, Luiz, João"
